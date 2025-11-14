@@ -1,4 +1,4 @@
-## 1. Exploring the Transformer Architecture: The Heart of Modern LLMs
+## 1. Exploring the Transformer Architecture: The Heart of Modern LLMs [[Video link ->](https://www.youtube.com/watch?v=Na3O4Pkbp-U&list=PLqFaTIg4myu_yKJpvF8WE2JfaG5kGuvoE)]
 
 The video opens by emphasizing how Transformers form the backbone of LLMs, revolutionizing how machines handle language. But rather than telling you what a Transformer is, let's reason through it. Imagine you're designing a system to understand and generate text like a human—where would you start? What challenges arise when processing sequences of words, and how might you address the need for context without losing efficiency?
 
