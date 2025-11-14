@@ -108,10 +108,11 @@ $$\\mathcal{L} = -\\sum_{t=1}^T \\log p(x_t | x_{<t})$$
 ### Reinforcement Learning from Human Feedback (RLHF)
 
 - RLHF pipeline (simplified):
-    1. Collect model outputs for prompts.
- 2. Humans rank outputs.
- 3. Train a reward model from rankings.
- 4. Use RL (PPO) to optimize policy against the reward model.
+  1. Collect model outputs for prompts.
+
+2.  Humans rank outputs.
+3.  Train a reward model from rankings.
+4.  Use RL (PPO) to optimize policy against the reward model.
 
 Mermaid sequence diagram (RLHF simplified):
 
@@ -135,9 +136,9 @@ After the model produces logits for the next token, decoding turns those logits 
 - Greedy: pick highest-probability token. Fast, often repetitive.
 - Beam search: keep top-k hypotheses, expands search; good for deterministic tasks but can be costly and produce generic outputs.
 - Sampling: sample from the distribution to increase diversity.
-    - Temperature: scale logits to make distribution sharper (low T) or flatter (high T).
-    - Top-k: sample from top k tokens.
-    - Top-p (nucleus): sample from smallest set whose cumulative probability >= p.
+  - Temperature: scale logits to make distribution sharper (low T) or flatter (high T).
+  - Top-k: sample from top k tokens.
+  - Top-p (nucleus): sample from smallest set whose cumulative probability >= p.
 
 Best practice: use sampling with tuned temperature and top-p for creative generation; use beam or greedy for structured predictions.
 
@@ -250,4 +251,3 @@ Author notes
 
 - If you paste sections from the whitepaper you'd like included verbatim, I can insert them under the appropriate headings and add figure references.
 - I can also generate an example `examples/agents/` folder with runnable scripts and a `requirements.txt` if you want reproducible demos.
-
