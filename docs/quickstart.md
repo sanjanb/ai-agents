@@ -13,7 +13,7 @@ Prerequisites
 - Python 3.8+ installed (this repository was validated with Python 3.13 on Windows).
 - (Optional) git if you want to clone the repository.
 
-1) Preview the docs locally (recommended)
+1. Preview the docs locally (recommended)
 
 Open PowerShell in the repository root and create a lightweight virtualenv (recommended):
 
@@ -31,10 +31,11 @@ python -m mkdocs serve -a 127.0.0.1:8000
 ```
 
 Notes:
+
 - If `Activate.ps1` is blocked by your PowerShell execution policy, run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` once (requires administrator permission depending on policy).
 - The docs are in the `docs/` folder. Editing files there will hot-reload the preview.
 
-2) Run the minimal agent example (a tiny, local policy)
+2. Run the minimal agent example (a tiny, local policy)
 
 Create a file named `agent.py` with this minimal example (or copy from `docs/agents/getting-started.md`):
 
@@ -57,7 +58,7 @@ Then run:
 python agent.py
 ```
 
-3) Try a small LLM-backed example (Hugging Face)
+3. Try a small LLM-backed example (Hugging Face)
 
 If you want to experiment with model generation, install `transformers` and a small model:
 
