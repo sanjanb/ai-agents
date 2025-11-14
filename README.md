@@ -64,7 +64,7 @@ documentation using the theme source code located here.
 [Vagrant](https://www.vagrantup.com) provides an easy way to set up and manage
 a Virtual Machine with [VirtualBox](https://www.virtualbox.org). With a single
 command you can automatically create the VM with all the dependencies required
-to build and sever this project.
+to build and serve this project.
 
 There is a [Vagrantfile](Vagrantfile) included to run an Ubuntu VM with Ruby
 and Jekyll. To set-up everything and serve the website run:
@@ -117,7 +117,7 @@ On the other hand the root of the website built and served with
 "docs" folder, so the left navigation bar will show the child folder as
 categories and the URLs will be different.
 
-For updating the theme documentation it can be useful to build and sever the
+For updating the theme documentation it can be useful to build and serve the
 docs folder with the same configuration as GitHub Pages. Of course, this would
 mean that the theme used will be the current snapshot of `master` on GitHub
 instead of the local files, but that is not important to just preview the docs.
