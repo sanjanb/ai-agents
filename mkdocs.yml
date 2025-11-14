@@ -7,3 +7,12 @@ site_dir: '_site_mkdocs/'
 theme: 'readthedocs'
 prev_next_buttons_location: 'both'
 copyright: 'Carlos Pereira Atencio'
+
+nav:
+	- Home: 'index.md'
+	- Docs:
+		- Quickstart: 'docs/quickstart.md'
+		- Jekyll: 'docs/jekyll.md'
+	- AI Agents:
+		- Overview: 'docs/agents/index.md'
+		- Getting Started: 'docs/agents/getting-started.md'
