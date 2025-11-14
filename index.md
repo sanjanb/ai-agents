@@ -5,9 +5,11 @@ nav_order: 1
 ---
 
 ---
+
 layout: default
 title: AI Agents — Book Index (Template)
 nav_order: 1
+
 ---
 
 # AI Agents — Documentation (Book Index)
@@ -33,12 +35,12 @@ Use this template as a starting point — once the chapter content is final we w
 
 ## Table of contents (links)
 
-- [AI Agents — Overview](/docs/agents/)  
-- [Foundational LLMs & Text Generation](/docs/agents/foundational-llms/)  
-- [Getting Started — Minimal Agent](/docs/agents/getting-started/)  
-- [Quickstart](/docs/quickstart/)  
-- [Configuration reference](/docs/configuration/configyml/)  
-- [Demo pages & examples](/docs/demo-pages/)  
+- [AI Agents — Overview](/docs/agents/)
+- [Foundational LLMs & Text Generation](/docs/agents/foundational-llms/)
+- [Getting Started — Minimal Agent](/docs/agents/getting-started/)
+- [Quickstart](/docs/quickstart/)
+- [Configuration reference](/docs/configuration/configyml/)
+- [Demo pages & examples](/docs/demo-pages/)
 
 > Note: when previewing with MkDocs the site root is served from `docs/` and links above work as relative paths; when serving with Jekyll from the repo root the same links resolve to the generated site paths.
 
