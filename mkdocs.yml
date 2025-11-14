@@ -11,8 +11,8 @@ copyright: "Carlos Pereira Atencio"
 nav:
   - Home: "index.md"
   - Docs:
-        - Quickstart: 'quickstart.md'
-        - Jekyll: 'jekyll.md'
+      - Quickstart: "quickstart.md"
+      - Jekyll: "jekyll.md"
   - AI Agents:
-        - Overview: 'agents/index.md'
-        - Getting Started: 'agents/getting-started.md'
+      - Overview: "agents/index.md"
+      - Getting Started: "agents/getting-started.md"
