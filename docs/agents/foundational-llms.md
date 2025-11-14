@@ -143,6 +143,7 @@ After the model produces logits for the next token, decoding turns those logits 
 Best practice: use sampling with tuned temperature and top-p for creative generation; use beam or greedy for structured predictions.
 
 ## 6. Common models & toolkits
+
 - GPT-family: decoder-only causal LMs (GPT-2, GPT-3, GPT-4 — closed or partially closed variants)
 - LLaMA, OPT, BLOOM: open-source large models with various licenses
 - PaLM, Chinchilla: research-scale models with variants
