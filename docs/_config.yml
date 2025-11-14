@@ -1,5 +1,5 @@
-title: Read The Docs Jekyll Theme
-description: Port of the Read the Docs theme to Jekyll to use with GitHub Pages.
+title: AI Agents — Learn & Build
+description: Practical documentation and tutorials for designing, building, and evaluating AI agents (LLMs, RAG, examples).
 remote_theme: carlosperate/jekyll-theme-rtd
 
 # Theme settings:
