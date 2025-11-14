@@ -143,7 +143,22 @@ After the model produces logits for the next token, decoding turns those logits 
 Best practice: use sampling with tuned temperature and top-p for creative generation; use beam or greedy for structured predictions.
 
 ## 6. Common models & toolkits
+- GPT-family: decoder-only causal LMs (GPT-2, GPT-3, GPT-4 — closed or partially closed variants)
+- LLaMA, OPT, BLOOM: open-source large models with various licenses
+- PaLM, Chinchilla: research-scale models with variants
+- Toolkits: Hugging Face Transformers, Hugging Face Accelerate, transformers + PEFT (parameter-efficient fine-tuning), OpenAI SDKs, LangChain for orchestration
 
+- GPT-family: decoder-only causal LMs (GPT-2, GPT-3, GPT-4 — closed or partially closed variants)
+- LLaMA, OPT, BLOOM: open-source large models with various licenses
+- PaLM, Chinchilla: research-scale models with variants
+- Gemini / Mixture-of-Experts (MoE): models that route tokens to specialist sub-networks to scale efficiently
+- Gopher, Mistral, and other open-source research models that push data quality and efficiency
+- Toolkits: Hugging Face Transformers, Hugging Face Accelerate, transformers + PEFT (parameter-efficient fine-tuning), OpenAI SDKs, LangChain for orchestration
+
+Notes on evolution and architecture choices
+
+- Mixture-of-Experts (MoE) models (used in some recent large-model families) activate only a subset of parameters per token via gating, improving parameter efficiency. This can give the benefits of very large parameter counts while keeping inference costs manageable for some workloads.
+- Long-context models: newer models support very long contexts (tens of thousands up to a million tokens in research variants), enabling multi-document reasoning and retrieval-augmented pipelines.
 - GPT-family: decoder-only causal LMs (GPT-2, GPT-3, GPT-4 — closed or partially closed variants)
 - LLaMA, OPT, BLOOM: open-source large models with various licenses
 - PaLM, Chinchilla: research-scale models with variants
@@ -201,6 +216,13 @@ Replace with the specific SDK (OpenAI, Anthropic, Google, etc.) and follow provi
 - Parameter-efficient tuning: LoRA, adapters, and prefix tuning change fewer parameters and are cheaper for multiple tasks.
 - Distillation: train smaller student models to mimic larger teacher models for faster inference.
 
+Additional fine-tuning and alignment variants
+
+- QLoRA: a variant that applies quantization to enable LoRA-style fine-tuning on constrained hardware by compressing model weights during fine-tuning and reducing memory needs.
+- RLAIF (Reinforcement Learning from AI Feedback): similar to RLHF but uses synthetic feedback from other models (or automated critics) to scale reward collection.
+- DPO (Direct Preference Optimization): alternative to RLHF that directly optimizes for pairwise preferences without an explicit RL loop; can simplify training pipelines.
+- PEFT techniques (LoRA, adapters, prefix tuning) are especially useful when you have many tasks and limited compute — they let you store small weight deltas per task instead of separate full model checkpoints.
+
 ## 9. Evaluation
 
 - Automatic metrics: perplexity (language modeling), BLEU/ROUGE (overlap), BERTScore (semantic similarity).
@@ -244,6 +266,11 @@ flowchart TD
 - Brown et al., GPT-3
 - Raffel et al., T5; Lewis et al., BART
 - Papers and resources referenced in the supplied whitepaper (see `assets/whitepapers/`)
+
+Additional resources in this repo
+
+- Whitepaper (detailed): `quick-knowledge/1. fundamental-model/whitepaper_Foundational Large Language models & text generation_v2.pdf`
+- Companion video (concept walkthrough): see the reference in `quick-knowledge/1. fundamental-model/01_fundamental-models.md` for a curated lecture playlist.
 
 ---
 
