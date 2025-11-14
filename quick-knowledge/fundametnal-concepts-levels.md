@@ -1,0 +1,19 @@
+### Probing the Fundamentals: The Essentials That Ground Everything [[]()]
+These are the concepts that form the bedrock—without them, the rest crumbles. Ask yourself: If you were explaining LLMs to a beginner, where would you start? What ideas recur as prerequisites throughout the video?
+
+- Consider the **Transformer Architecture**: Why do you think this is pivotal? How does its encoder-decoder setup, with elements like tokenization, embeddings, positional encodings, multi-head self-attention (queries, keys, values), residual connections, layer normalization, and feed-forward layers, enable parallel processing of language? What challenges from older models like RNNs does it solve, and how might visualizing it as a "relationship web" for text help your understanding?
+- Reflect on **LLM Basics**: What makes LLMs "large" and "language models"? Ponder how they're trained on vast text to predict, understand, and generate—why unsupervised pre-training on raw data builds intuition for tasks like translation or summarization? If scale (data, parameters) is key, how does that tie into emergent abilities?
+- Think about the **Evolution Timeline**: How does tracing from GPT-1 (pre-training on books) to BERT (masked modeling) to GPT-2/3 (zero/few-shot) reveal patterns? What milestones show shifts from unidirectional to bidirectional or multimodal? Ask: If progress is exponential, what predicts the next leap?
+
+As you list these in your mind, what connections emerge? How might mastering fundamentals empower you to critique real-world AI tools?
+
+### Exploring the Advanced: Layers of Sophistication and Innovation
+Now, shift to ideas that build on the basics—optimizations, techniques, and applications that push boundaries. Question: What concepts felt like "next-level" refinements? How do they address limitations like efficiency or alignment?
+
+- Delve into **Decoder-Only Models**: Why abandon encoders for generation tasks? How does masked self-attention ensure predictions use only prior context, and what advantages does this offer for autoregressive outputs like chat or writing? Consider: In what scenarios might this simplicity outperform full Transformers?
+- Ponder **Mixture of Experts (MoE)**: If scaling models is resource-heavy, how does activating subsets via gating (e.g., in Gemini) boost efficiency? Ask: Could this mimic human expertise, and what trade-offs in training or inference arise?
+- Examine **Fine-Tuning Techniques**: Once pre-trained, why customize? Reflect on supervised fine-tuning (SFT) with pairs, RLHF for human-aligned rewards, or efficient methods like adapters, LoRA, QLoRA—how do they save resources? What if you were adapting a model; which would you choose, and why?
+- Question **Prompt Engineering**: How does crafting inputs unlock potential? Think zero/few-shot, chain-of-thought—why do they work? And sampling: Greedy vs. temperature/top-k/best-of-n—how control diversity? Ponder: Is prompting an art or science, and how might experimenting refine your skills?
+- Consider **Inference Optimization**: Generation is slow; why? Explore approximating (quantization, distillation) vs. preserving (Flash Attention, prefix caching, speculative decoding)—how speed up without quality loss? Ask: For a real app, what factors guide choices?
+- Reflect on **Evaluation Methods**: Metrics like BLEU/ROUGE are basic, but why human or LLM evaluators for nuance? Ponder rubrics for coherence/helpfulness—how ensure fairness, especially with bias?
+- Think about **Applications in Text Generation**: From code/debugging to translation/summarization/Q&A/chatbots/content/classification—how extend to multimodal? Question: What ethical dilemmas arise, and which app could transform your field?
