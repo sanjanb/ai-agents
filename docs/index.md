@@ -4,42 +4,49 @@ title: Index
 nav_exclude: true
 ---
 
-# Read The Docs Theme for Jekyll and GitHub Pages
+# AI Agents — Learn to understand and build intelligent systems
 
-This is a port of the
-[Read The Docs](https://sphinx-rtd-theme.readthedocs.io) theme to
-[Jekyll](https://jekyllrb.com/), so that it can be used with GitHub Pages.
+Welcome. This site documents practical, reproducible approaches to designing, building and evaluating AI agents — systems that sense, reason, and act using machine learning components (especially LLMs).
 
-You are previewing the theme right now, as you navigate
-[this documentation](https://carlosperate.github.io/jekyll-theme-rtd):
+What you'll find here
 
-![screenshot](assets/img/screenshot.png)
+- A guided learning path for AI agents: concepts, architectures, and worked examples.
+- Hands-on tutorials and runnable code (Hugging Face, local models, and API patterns).
+- A focused first chapter on foundational LLMs & text generation (see "AI Agents → Foundational LLMs").
 
-The original [Read The Docs](https://readthedocs.org)
-[theme]((https://sphinx-rtd-theme.readthedocs.io)) was created for the
-[Sphinx](https://www.sphinx-doc.org/) documentation generator, and so it is
-designed specifically for docs.
+Quick links
 
-Combined with [GitHub Pages](https://pages.github.com) it's a great and easy
-way to document your projects!
+- AI Agents overview — Agents landing page: /agents/
+- Getting started — Minimal runnable agent: /agents/getting-started/
+- Foundational LLMs — Chapter 1: /agents/foundational-llms/
 
-## What Can You Find Around Here
+How to preview locally
 
-- Check out the [Quick Start Guide](https://carlosperate.github.io/jekyll-theme-rtd/quickstart.html) to get up and running.
-- If some of the terms thrown around here don't make a lot of sense, check out the [What is All This? (FAQs)](https://carlosperate.github.io/jekyll-theme-rtd/faqs.html) page.
-- To find out more about all the theme available options see the
-  [Theme Configuration](https://carlosperate.github.io/jekyll-theme-rtd/configuration/configyml.html)
-  and the [Pages Configuration](https://carlosperate.github.io/jekyll-theme-rtd/configuration/frontmatter.html)
-  pages.
+1. With MkDocs (recommended for docs preview):
 
-## 🚧 Warning!
+```powershell
+# from repository root
+python -m mkdocs serve -a 127.0.0.1:8000
+# open http://127.0.0.1:8000 in a browser
+```
 
-This theme is currently a **Work-In-Progress** but, while some things might be
-broken, it should be already usable.
+2. With Jekyll (if you want to preview the original theme layout):
 
-Missing features are listed in the GitHub issues with the
-[to-do label](https://github.com/carlosperate/jekyll-theme-rtd/issues?q=is%3Aissue+is%3Aopen+label%3Ato-do),
-and any known issues are listed with the
-[bug label](https://github.com/carlosperate/jekyll-theme-rtd/issues?q=is%3Aissue+is%3Aopen+label%3Abug).
+```powershell
+bundle install
+bundle exec jekyll serve --host 0.0.0.0 --watch
+```
 
-Contributions are very welcomed!
+Contributing
+
+- Found an error or want to add an example? Open a PR with a short description and runnable code where applicable.
+- If you want CI previews, I can add a GitHub Actions workflow to build MkDocs on PRs and post a preview link.
+
+Support & notes
+
+- This site mixes MkDocs previews and Jekyll theme sources for documentation development. The canonical learning content is in `docs/` (used by MkDocs).
+- If you prefer a different learning path or additional example languages (JS/TS, Rust), tell me and I'll add them.
+
+---
+
+Start with "AI Agents → Getting Started" for a minimal agent you can run locally, or open "AI Agents → Foundational LLMs" to dive into chapter 1.
