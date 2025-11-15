@@ -18,3 +18,4 @@ nav:
       - Getting Started: "agents/getting-started.md"
       - Foundational LLMs & Text Generation: "agents/foundational-llms.md"
       - Embeddings & Vector Stores: "agents/embeddings-vector-stores.md"
+      - Generative Agents: "agents/generative-agents.md"
