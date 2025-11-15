@@ -178,7 +178,7 @@ Notes on evolution and architecture choices
 - LLaMA, OPT, BLOOM: open-source large models with various licenses
 - PaLM, Chinchilla: research-scale models with variants
 - Toolkits: Hugging Face Transformers, Hugging Face Accelerate, transformers + PEFT (parameter-efficient fine-tuning), OpenAI SDKs, LangChain for orchestration
-Expanded notes and practical implications
+  Expanded notes and practical implications
 
 Mixture-of-Experts (MoE)
 
@@ -202,6 +202,7 @@ Tooling and practical guidance
 - Use HV-friendly kernels (FlashAttention-enabled builds) when deploying transformer-based models at scale.
 - For chat apps, always enable KV caches and consider prefix caching to avoid re-encoding long histories.
 - When latency is critical, consider distillation or speculative decoding strategies.
+
 ## 7. Practical examples (runnable)
 
 Below are two minimal examples: (A) using Hugging Face local model (small) and (B) calling an LLM API. These are intentionally small so they run quickly.
