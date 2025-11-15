@@ -1,6 +1,7 @@
 # Generative Agents
 
 This chapter explains what generative AI agents are, how they are architected, how they reason and use tools, and how to build them end-to-end with function calling and agent frameworks. It distills and integrates material from:
+
 - quick-knowledge/3. Generative-agents/agents/gnerative-ai-agents.md
 - quick-knowledge/3. Generative-agents/agents/concept-levels.md
 - quick-knowledge/3. Generative-agents/agents/guide-through.md
@@ -12,6 +13,7 @@ This chapter explains what generative AI agents are, how they are architected, h
 ## 1. What is a generative agent?
 
 A generative agent is a goal-directed program that observes, reasons, and acts using a foundation model (LLM) plus external tools and memory. Unlike standalone LLMs (which only predict the next token), agents:
+
 - Access live information (APIs, databases, search)
 - Take actions (send emails, update records, trigger workflows)
 - Maintain multi-turn state and memory
@@ -28,6 +30,7 @@ An effective mental model (from the provided resources):
 - Orchestration (the strategist): the controller that loops over reason → act → observe, manages memory, and maintains goal alignment.
 
 Interface-style view:
+
 - Inputs: user goals, constraints, environment signals
 - Core loop: plan → call tools → observe → update plan → continue/stop
 - Outputs: actions taken, results, and explanations
@@ -35,6 +38,7 @@ Interface-style view:
 ## 3. Reasoning frameworks
 
 Reasoning becomes explicit via prompting and control flow:
+
 - ReAct (Reason + Act): interleave thought, tool calls, and observations.
 - Chain-of-Thought (CoT): produce step-by-step intermediate reasoning.
 - Self-Consistency: sample multiple CoTs and vote.
@@ -50,6 +54,7 @@ Tip: Combine ReAct + CoT for transparency and debuggability; reserve ToT for har
 - Data Stores: RAG with embeddings + vector DBs to ground the model in your latest knowledge and structured filters.
 
 Security notes:
+
 - Validate and sanitize inputs/outputs
 - Apply least-privilege API scopes and audit logs
 - Keep a human-in-the-loop for sensitive actions
@@ -62,6 +67,7 @@ Security notes:
 - Reflection: self-critique and repair when confidence is low or errors occur.
 
 Practical heuristics:
+
 - Separate scratchpad (reasoning) from user-visible output
 - Log tool calls and observations for traceability
 - Use confidence thresholds to trigger more retrieval or human review
@@ -189,6 +195,7 @@ while True:
 ```
 
 Key takeaways:
+
 - Define small, typed functions with clear docstrings
 - Allow only safe operations (e.g., SELECT-only)
 - Bind the functions via schema and drive a tight control loop
@@ -264,6 +271,7 @@ print(res["answer"])  # Expect a TOOL call or computed result
 ```
 
 Notes:
+
 - In real agents, use structured tool schemas, parsing, and rigorous routing
 - Add memory (conversation + vector retrieval) and a planner node
 - Keep tool execution sandboxed and audited
@@ -278,6 +286,7 @@ Notes:
 ## 9. Evaluation and observability
 
 Measure both quality and operations:
+
 - Task success rate, precision@k (when retrieval is used), factuality
 - Latency (p50, p95), cost per request, tool call error rate
 - Trace all steps: prompts, tool inputs/outputs, and decisions
@@ -298,13 +307,14 @@ Measure both quality and operations:
 
 ## 12. Hands-on exercises
 
-1) Extend the Gemini function-calling demo to support parameterized filters and safe aggregations.
-2) Add a RAG memory to the LangGraph agent and evaluate retrieval quality.
-3) Implement a planner-executor split and measure success on multi-step tasks.
-4) Add centralized tracing and a dashboard of latency + accuracy.
-5) Introduce a human-approval step for sensitive tool calls and test the UX.
+1. Extend the Gemini function-calling demo to support parameterized filters and safe aggregations.
+2. Add a RAG memory to the LangGraph agent and evaluate retrieval quality.
+3. Implement a planner-executor split and measure success on multi-step tasks.
+4. Add centralized tracing and a dashboard of latency + accuracy.
+5. Introduce a human-approval step for sensitive tool calls and test the UX.
 
 ## References
+
 - Kaggle Generative AI course (function calling & agents) — distilled in this chapter
 - Agents deck and companion notes from the provided PDFs
 - LangGraph & LangChain docs; Google Gemini API docs
