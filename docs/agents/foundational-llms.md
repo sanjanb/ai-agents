@@ -292,7 +292,6 @@ Checklist before production:
 - Byte-Pair Encoding (BPE) and WordPiece build a vocabulary of subword pieces by iteratively merging frequent symbol pairs. Byte-level BPE operates at the byte level to avoid unknown-token problems across languages.
 - Tokenization artifacts: whitespace handling, special tokens, and tokenizer mismatch (different tokenizers between pretraining and fine-tuning) can cause subtle performance or formatting differences. Always persist and version your tokenizer and record its vocabulary and special token mapping.
 
-
 - GPT-family: decoder-only causal LMs (GPT-2, GPT-3, GPT-4 — closed or partially closed variants)
 - LLaMA, OPT, BLOOM: open-source large models with various licenses
 - PaLM, Chinchilla: research-scale models with variants

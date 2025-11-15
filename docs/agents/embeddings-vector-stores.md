@@ -23,9 +23,9 @@ Choose an embedding model based on domain (short queries vs long documents), lat
 
 ### Contrastive training and InfoNCE
 
-Most modern dense retrievers use contrastive objectives. A common formulation is the InfoNCE loss used with a dual-encoder setup: given a query q and a set of keys {k_+, k_1, ..., k_N} where k_+ is a positive (relevant) key:
+Most modern dense retrievers use contrastive objectives. A common formulation is the InfoNCE loss used with a dual-encoder setup: given a query q and a set of keys {k*+, k_1, ..., k_N} where k*+ is a positive (relevant) key:
 
-\[\mathcal{L}_{\text{InfoNCE}} = -\log \frac{\exp(q\cdot k_+ / \tau)}{\sum_{i=+}^{N} \exp(q\cdot k_i / \tau)}\]
+\[\mathcal{L}_{\text{InfoNCE}} = -\log \frac{\exp(q\cdot k_+ / \tau)}{\sum\_{i=+}^{N} \exp(q\cdot k_i / \tau)}\]
 
 where \(\tau\) is a temperature hyperparameter. Using many negatives (in-batch or memory-bank negatives) and hard-negative mining improves retrieval quality significantly.
 
