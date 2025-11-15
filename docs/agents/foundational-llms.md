@@ -447,6 +447,32 @@ flowchart TD
 2. Replace the local model with a small on-disk instruction-tuned model and measure quality differences.
 3. Implement a simple RAG loop: retrieve a short document and prepend it to the prompt before generation; compare factual accuracy.
 
+## Whitepaper highlights — simplified takeaways
+
+This short, plain-language summary extracts practical points from the supplied whitepaper (`quick-knowledge/1. fundamental-model/whitepaper_Foundational Large Language models & text generation_v2.pdf`) and translates them into actionable ideas you can apply quickly.
+
+- What is a Transformer (very simply): a model that lets every token look at every other token (attention), then transforms those contextual token representations through small feed-forward networks. Think: "each word asks every other word what it thinks, then they all update their understanding together."
+- Tokens and tokenization: models operate on tokens (subword pieces). Short rule: fewer tokens = cheaper, but token granularity affects meaning and formatting. Always check the tokenizer when you see weird spacing or split words.
+- Embeddings, in one line: vectors that turn meaning into numbers so similarity = closeness. Use off-the-shelf sentence encoders for most semantic tasks unless you need domain-specific nuance.
+- Attention intuition & scaling: scaled dot-product attention computes how much each token should listen to others. Bigger models + more data tend to perform better, but data quality often matters as much as size.
+- Decoder vs encoder models: decoder-only (GPT-style) are great for generation; encoder/encoder-decoder (BERT/T5) shine at understanding/extraction tasks.
+- Training objectives, boiled down: predict-missing (masked) or predict-next (causal) — both teach the model language patterns; instruction tuning + RLHF teach helpfulness and safety on top of those patterns.
+- RLHF made simple: humans (or raters) say which outputs are better, we train a scorer (reward model), and then nudge the generator toward higher-scoring outputs while keeping it close to what it already knows.
+- Prompting in practice: be explicit (role, format, examples) and validate outputs with schema checks when machines will parse the model's answer.
+- Stop hallucinations quickly: fetch facts with a retriever (RAG), include the retrieved text in the prompt, and ask the model to cite which chunk it used when answering.
+- Long-context practicality: for very long documents use chunking + retrieval instead of trying to feed everything into a single prompt. Overlap adjacent chunks a little to preserve context at boundaries.
+- Mixture-of-Experts (MoE) in short: route each token to a couple of specialist sub-networks — gives big capacity without paying full compute for every token, but complicates deployment.
+- Inference speedups you can use today: enable KV-caching for chat, use quantized models (4/8-bit) when acceptable, and apply a fast ANN index for retrieval steps.
+- Evaluation checklist: build a small human-checked test set, use precision@k or NDCG for retrieval tasks, and sample for human review — automatic metrics miss many real issues.
+
+Quick action checklist (5 minutes to test)
+
+1. Run the small HF demo in this chapter (`gpt2` snippet) and try `temperature=0` vs `temperature=0.8` to see determinism vs creativity.
+2. Create 10 short Q&A pairs from your domain; index them with `all-MiniLM-L6-v2` and verify precision@5 — this shows retrieval quality fast.
+3. Add a schema-check step to one prompt (JSON schema) and confirm the model returns valid JSON for 20 random examples.
+
+Reference: see the full whitepaper at `quick-knowledge/1. fundamental-model/whitepaper_Foundational Large Language models & text generation_v2.pdf` for detailed derivations, diagrams, and background.
+
 ## 13. Further reading and references
 
 - Vaswani et al., "Attention Is All You Need" (transformers)
