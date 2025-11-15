@@ -51,6 +51,7 @@ python scripts\eval_rag.py --k 5
 ```
 
 Troubleshooting:
+
 - If model downloads fail for `sentence-transformers`, ensure internet access or pre-download models.
 - For `faiss-cpu` on Windows, use a Python 3.10–3.12 environment for best compatibility.
 - If you hit API limits, reduce batch sizes and add retries.
