@@ -103,4 +103,4 @@ Question: %s
 
 ---
 
-If you'd like, I can also add a tiny `examples/embeddings/` folder with runnable scripts and a `requirements.txt` to let you test locally — should I create that next? 
+If you'd like, I can also add a tiny `examples/embeddings/` folder with runnable scripts and a `requirements.txt` to let you test locally — should I create that next?
