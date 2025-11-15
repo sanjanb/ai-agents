@@ -1,0 +1,17 @@
+# Core
+google-genai==1.7.0
+sentence-transformers>=2.7.0
+faiss-cpu>=1.8.0
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+# Retrieval / ranking
+rank-bm25>=0.2.2
+
+# Optional agent frameworks
+langgraph>=0.2.0
+langchain-openai>=0.2.0
+
+# Observability (optional)
+opentelemetry-sdk>=1.26.0
