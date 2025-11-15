@@ -74,6 +74,7 @@ Tokens: ["Large", " language", " models", " are", " powerful", "."]  (example us
 The quality and diversity of training data fundamentally determines model capabilities. Modern LLMs are typically trained on diverse text corpora including:
 
 **Data sources:**
+
 - Web crawls (Common Crawl, filtered for quality)
 - Books and literature (Project Gutenberg, published works)
 - Academic papers and journals
@@ -82,6 +83,7 @@ The quality and diversity of training data fundamentally determines model capabi
 - News articles and periodicals
 
 **Preprocessing pipeline:**
+
 1. **Deduplication**: Remove near-duplicate content using hashing or similarity measures
 2. **Quality filtering**: Remove low-quality text using classifiers or heuristics
 3. **Content filtering**: Remove harmful, biased, or inappropriate content
@@ -90,6 +92,7 @@ The quality and diversity of training data fundamentally determines model capabi
 6. **Privacy scrubbing**: Remove personally identifiable information (PII)
 
 **Data composition considerations:**
+
 - Balance between domains to avoid over-specialization
 - Include diverse perspectives to reduce bias
 - Temporal distribution affects knowledge cutoffs
@@ -159,22 +162,26 @@ Empirical scaling laws show that model performance scales smoothly with paramete
 ### Architecture variants and design choices
 
 **Decoder-only vs Encoder-decoder architectures:**
+
 - **Decoder-only** (GPT family): Optimized for autoregressive generation, simpler architecture, good for completion tasks
 - **Encoder-decoder** (T5, BART): Separate encoding and decoding phases, good for translation and summarization
 - **Encoder-only** (BERT): Bidirectional context, excellent for understanding and classification tasks
 
 **Layer and attention variations:**
+
 - **Layer normalization placement**: Pre-norm vs post-norm affects training stability
 - **Attention patterns**: Full attention vs sparse patterns (sliding window, global tokens)
 - **Feed-forward variations**: Standard MLP vs gated variants (SwiGLU, GeGLU)
 - **Activation functions**: ReLU vs GELU vs SwiGLU for different efficiency/quality trade-offs
 
 **Parameter efficient architectures:**
+
 - **Mixture of Experts (MoE)**: Route tokens to specialized subnetworks
 - **Low-rank architectures**: Compress weight matrices while maintaining performance
 - **Shared parameters**: Tie weights across layers or components
 
 **Memory and efficiency optimizations:**
+
 - **Gradient checkpointing**: Trade compute for memory during training
 - **Mixed precision training**: Use FP16/bfloat16 to reduce memory usage
 - **Model parallelism**: Split large models across multiple GPUs
@@ -246,22 +253,26 @@ sequenceDiagram
 ### Advanced alignment techniques
 
 **Constitutional AI (CAI):**
+
 - Train models to follow a set of principles or "constitution"
 - Self-critique and revision based on constitutional principles
 - Reduces need for human feedback on every output
 
 **Direct Preference Optimization (DPO):**
+
 - Skip the reward model training step
 - Directly optimize policy using preference data
 - Simpler training pipeline, often more stable
 
 **Red team evaluation and safety testing:**
+
 - Adversarial prompting to find failure modes
 - Systematic testing of harmful content generation
 - Robustness testing across diverse demographics
 - Evaluation of dual-use capabilities (e.g., cybersecurity, misinformation)
 
 **Interpretability and monitoring:**
+
 - Attention visualization and analysis
 - Activation patching and causal intervention
 - Probing for specific knowledge or biases
@@ -496,11 +507,13 @@ Practical tip: start with LoRA (or QLoRA if memory-bound) and a small validation
 ### Deployment considerations and cost optimization
 
 **Infrastructure choices:**
+
 - **Cloud APIs**: Easy to start, pay-per-use, but limited customization and ongoing costs
 - **Self-hosted**: More control and potential cost savings at scale, but requires infrastructure expertise
 - **Edge deployment**: Lower latency, privacy benefits, but limited by hardware constraints
 
 **Cost optimization strategies:**
+
 - **Model selection**: Choose the smallest model that meets quality requirements
 - **Caching**: Cache frequent queries and responses to reduce API calls
 - **Batch processing**: Group similar requests to improve throughput
@@ -508,12 +521,14 @@ Practical tip: start with LoRA (or QLoRA if memory-bound) and a small validation
 - **Load balancing**: Distribute requests across multiple instances
 
 **Performance monitoring:**
+
 - **Latency tracking**: Monitor response times and identify bottlenecks
 - **Quality metrics**: Track output quality over time with automated checks
 - **Usage patterns**: Understand peak times and resource requirements
 - **Cost analysis**: Monitor spending per request, per user, per use case
 
 **Scaling considerations:**
+
 - **Horizontal scaling**: Add more instances for increased throughput
 - **Vertical scaling**: Use larger instances for memory-intensive models
 - **Auto-scaling**: Automatically adjust resources based on demand
@@ -546,21 +561,25 @@ Practical evaluation workflow
 ### Common failure modes and mitigations
 
 **Hallucination and factual errors:**
+
 - **Symptoms**: Confident but incorrect statements, made-up citations, false claims
 - **Mitigations**: RAG with reliable sources, fact-checking APIs, uncertainty quantification
 - **Detection**: Cross-reference claims, use multiple sources, human review for critical applications
 
 **Prompt injection and adversarial inputs:**
+
 - **Symptoms**: Users override system instructions, extract sensitive information
 - **Mitigations**: Input sanitization, output filtering, prompt firewall systems
 - **Best practices**: Separate system and user content, validate all inputs
 
 **Bias and fairness issues:**
+
 - **Symptoms**: Discriminatory outputs, stereotypical responses, unequal treatment
 - **Mitigations**: Diverse training data, bias testing, fairness constraints
 - **Evaluation**: Test across demographic groups, measure representation
 
 **Privacy and data leakage:**
+
 - **Symptoms**: Models regurgitate training data, expose sensitive information
 - **Mitigations**: Differential privacy, data scrubbing, output monitoring
 - **Compliance**: GDPR, CCPA, industry-specific regulations
@@ -577,36 +596,42 @@ Mitigations and best practices
 ## Real-world applications and case studies
 
 ### Content creation and editing
+
 - **Blog writing and journalism**: Draft articles, generate headlines, fact-check content
 - **Marketing copy**: Create advertisements, social media posts, product descriptions
 - **Technical documentation**: Generate API docs, user manuals, code comments
 - **Creative writing**: Story generation, poetry, screenplays, character development
 
 ### Code and software development
+
 - **Code generation**: Write functions, classes, complete programs from specifications
 - **Code review and debugging**: Identify bugs, suggest improvements, explain complex code
 - **Documentation**: Generate docstrings, README files, technical specifications
 - **Testing**: Create unit tests, integration tests, test data generation
 
 ### Business and productivity
+
 - **Customer service**: Chatbots, FAQ responses, ticket classification
 - **Data analysis**: Generate insights from datasets, create reports, explain findings
 - **Meeting assistance**: Summarize meetings, action items, follow-up tasks
 - **Email and communication**: Draft responses, meeting invites, professional correspondence
 
 ### Education and training
+
 - **Tutoring systems**: Personalized learning, adaptive questioning, concept explanation
 - **Content creation**: Lesson plans, quiz generation, educational materials
 - **Language learning**: Conversation practice, grammar correction, vocabulary building
 - **Skill assessment**: Automated grading, feedback generation, competency evaluation
 
 ### Research and analysis
+
 - **Literature review**: Summarize papers, identify key themes, citation analysis
 - **Data processing**: Extract information, clean datasets, pattern recognition
 - **Hypothesis generation**: Suggest research directions, experimental designs
 - **Report writing**: Structure findings, generate visualizations, peer review
 
 ### Success factors for LLM applications
+
 1. **Clear scope and objectives**: Define specific use cases and success metrics
 2. **Human-in-the-loop**: Maintain human oversight for quality and safety
 3. **Iterative improvement**: Continuously refine prompts and fine-tune models
