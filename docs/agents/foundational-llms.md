@@ -87,6 +87,28 @@ Notes:
 - For causal language modeling (auto-regressive generation) we use a decoder-only transformer (masked self-attention to prevent seeing future tokens).
 - For bidirectional tasks (masked LM), encoder or encoder-decoder variants are used.
 
+### Attention — the math made concrete
+
+At the core of Transformers is scaled dot-product attention. Given queries Q, keys K and values V (matrices computed by linear projections of the input), the attention output is:
+
+\[\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V\]
+
+where \(d_k\) is the dimensionality of the key vectors. The division by \(\sqrt{d_k}\) stabilizes gradients and prevents extremely large dot-products. Multi-head attention runs H parallel attention heads with distinct learned projections, concatenates their outputs, and applies a final linear projection — this lets the model attend to different subspaces (syntax, co-reference, semantics) in parallel.
+
+### Positional encodings and relative positions
+
+Transformers are permutation-invariant by construction, so positional information is injected either via fixed sinusoidal encodings (original Transformer) or learned positional embeddings. Relative positional encodings (used in many modern variants) let the model reason about token distance directly and are especially helpful for long-context tasks.
+
+### Optimization & training recipes (practical)
+
+- Optimizers: AdamW (Adam + decoupled weight decay) is the common choice; tune weight decay separately from learning rate.
+- Learning rate schedules: warmup for several thousand steps (linear warmup) followed by cosine or linear decay stabilizes training for large batch regimes.
+- Mixed precision (FP16 / bfloat16) and gradient accumulation enable training large models on limited GPU memory.
+
+### Scaling laws (concise)
+
+Empirical scaling laws show that model performance scales smoothly with parameters, dataset size, and compute following predictable power-law trends. These rules help decide whether to invest in more data, larger models, or longer training for a given budget.
+
 ## Model evolution — concise timeline
 
 A short, practical timeline to ground historical context and terminology you'll see in research and tooling:
@@ -142,6 +164,14 @@ sequenceDiagram
     RewardModel->>RL: provide rewards
     RL->>Model: update policy
 ```
+
+    #### RLHF — practical details
+
+    - Reward model training: pairwise human preferences are converted into a supervised loss where the reward model r(·) is trained so r(preferred) > r(non_preferred). Typical loss uses cross-entropy over pairs or a margin ranking loss.
+    - Policy optimization: Proximal Policy Optimization (PPO) is commonly used with an added KL penalty term relative to the pretrained or supervised policy; this KL term prevents the policy from drifting too far and preserves useful pretraining behavior.
+    - Diagnostics & safety: monitor for reward-model overfitting, reward hacking (where the policy exploits quirks of the reward model), and distributional shift. Maintain a human-in-the-loop validation set and adversarial prompts to find regressions.
+
+    Practical tip: alternate small supervised fine-tuning steps and RLHF iterations, and always validate behavior on held-out, human-annotated benchmarks before deploying changes from RLHF.
 
 ## 5. Decoding & generation strategies
 
@@ -256,6 +286,12 @@ Checklist before production:
 - LLaMA, OPT, BLOOM: open-source large models with various licenses
 - PaLM, Chinchilla: research-scale models with variants
 - Toolkits: Hugging Face Transformers, Hugging Face Accelerate, transformers + PEFT (parameter-efficient fine-tuning), OpenAI SDKs, LangChain for orchestration
+
+### Tokenization — deeper notes
+
+- Byte-Pair Encoding (BPE) and WordPiece build a vocabulary of subword pieces by iteratively merging frequent symbol pairs. Byte-level BPE operates at the byte level to avoid unknown-token problems across languages.
+- Tokenization artifacts: whitespace handling, special tokens, and tokenizer mismatch (different tokenizers between pretraining and fine-tuning) can cause subtle performance or formatting differences. Always persist and version your tokenizer and record its vocabulary and special token mapping.
+
 
 - GPT-family: decoder-only causal LMs (GPT-2, GPT-3, GPT-4 — closed or partially closed variants)
 - LLaMA, OPT, BLOOM: open-source large models with various licenses

@@ -21,6 +21,19 @@ This chapter explains embeddings (text, image, multimodal), how to build and eva
 
 Choose an embedding model based on domain (short queries vs long documents), latency, and cost.
 
+### Contrastive training and InfoNCE
+
+Most modern dense retrievers use contrastive objectives. A common formulation is the InfoNCE loss used with a dual-encoder setup: given a query q and a set of keys {k_+, k_1, ..., k_N} where k_+ is a positive (relevant) key:
+
+\[\mathcal{L}_{\text{InfoNCE}} = -\log \frac{\exp(q\cdot k_+ / \tau)}{\sum_{i=+}^{N} \exp(q\cdot k_i / \tau)}\]
+
+where \(\tau\) is a temperature hyperparameter. Using many negatives (in-batch or memory-bank negatives) and hard-negative mining improves retrieval quality significantly.
+
+### Distance metrics and normalization
+
+- Cosine similarity and inner-product (dot-product) are the most common similarity functions. Normalizing vectors to unit length turns inner-product into cosine similarity; be consistent between training and indexing (e.g., normalize before building a FAISS IndexFlatIP).
+- Choice of metric affects index selection: many ANN indexes operate on inner-product; others expect L2 distances. Convert or normalize appropriately when building indices.
+
 ## 3. Evaluating embeddings
 
 - Retrieval metrics: precision@k, recall@k, NDCG (position-aware ranking quality).
@@ -77,11 +90,53 @@ Question: %s
 - ANN families: LSH, tree-based (KD-tree), graph-based (HNSW), and optimized kernels (ScaNN). HNSW (and its HNSWlib implementations) is a practical default for many workloads.
 - Hybrid search: combine keyword filters (BM25) with vector re-ranking to handle rare / factual tokens.
 
+### FAISS internals & index types
+
+- `IndexFlatL2` / `IndexFlatIP`: exact indices using L2 or inner-product; fast for small collections but memory-heavy at scale.
+- `IndexIVF` (inverted file) + `IndexFlat` or `PQ`: IVF uses a coarse quantizer (coarse clusters) to partition the space; at query time only a subset of clusters are searched. PQ (Product Quantization) compresses vectors into compact codes for memory savings.
+- `OPQ` (Optimized Product Quantization): a rotation step before PQ that reduces quantization error and improves recall.
+
+Important: training an IVF or PQ index requires representative vectors; run the training step on a sufficiently large sample of your data before indexing.
+
+### HNSW tuning knobs
+
+- `M`: maximum number of neighbors per layer — larger `M` increases recall and memory usage.
+- `efConstruction`: controls construction-time graph quality (higher -> better recall, slower build).
+- `efSearch`: runtime parameter for search quality vs latency; increase `efSearch` to improve recall at query time.
+
+Tune `efSearch` and `M` to find the smallest values that meet your recall and latency targets.
+
+### Quantization & compressed indices
+
+- Product Quantization (PQ) divides each vector into sub-vectors and quantizes each into codebook entries — a powerful compression technique for billion-scale datasets.
+- Asymmetric distance computation (ADC) allows queries to remain in full precision while comparing against compressed database codes.
+
+### Two-stage retrieval and re-ranking
+
+- A practical pipeline: use ANN to retrieve top-K (e.g., 50–200) candidates quickly, then apply a cross-encoder (full attention) or more expensive scorer to re-rank and return final results. This balances latency and quality.
+
 ## 7. Vector databases and operational considerations
 
 - Examples: Pinecone, Weaviate, Chroma, Milvus, Qdrant, FAISS (library). Cloud offerings: Vertex AI Vector Search, Amazon OpenSearch with vector plugin.
 - Operational concerns: sharding, replication, index rebuilds, reindexing on model upgrades, latency SLAs, authorization, and cost.
 - Embedding drift: plan reindexing cadence and version embeddings (store model id + embedding schema in metadata).
+
+### Index updates, drift mitigation and chunking heuristics
+
+- Incremental updates: many vector DBs support adding vectors online, but structural index types (IVF+PQ) may require periodic rebuilds or background merges for optimal performance.
+- Reindexing strategy: maintain index versions and perform shadow reindexes. Validate new index quality on a sample query set before switching traffic.
+- Drift monitoring: monitor precision@k for representative queries and trigger investigations when metrics degrade; store embeddings with model metadata to link vectors to specific encoder versions.
+
+### Chunking & prompt-construction heuristics for RAG
+
+- Chunk size: choose chunk sizes relative to the LLM context window (200–1000 tokens). Smaller chunks increase precision but may lose cross-sentence context; larger chunks increase cost.
+- Overlap: include 10–30% overlap between adjacent chunks to preserve context across boundaries.
+- Prompt construction: include provenance (source id, chunk offsets) and confidence metadata to allow traceability and user-facing citations.
+
+### Privacy and security notes
+
+- Vectors can encode sensitive facts. Scrub PII from source texts before embedding or use privacy-preserving embedding techniques (e.g., differential privacy or secure enclaves) when required.
+- Encryption: ensure encryption at rest and fine-grained RBAC for vector DB access. Consider query-side throttles and logging for audit trails.
 
 ## 8. Best practices
 
