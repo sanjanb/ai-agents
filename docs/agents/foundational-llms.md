@@ -156,6 +156,100 @@ After the model produces logits for the next token, decoding turns those logits 
 
 Best practice: use sampling with tuned temperature and top-p for creative generation; use beam or greedy for structured predictions.
 
+## Prompt engineering and sampling (practical guidance)
+
+Prompt engineering is an iterative design process: small changes in wording, order, or examples can substantially change model outputs. Below is a practical, consolidated reference you can use as a subchapter inside this chapter.
+
+### Foundational concepts
+
+- Consider modality (text vs multimodal), token limits (cost/performance trade-offs), and sampling controls (temperature, top-k, top-p).
+- Recommended sampling settings (starting points):
+  - `temperature: 0.0` — deterministic; good for logic, code, and precise formats.
+  - `temperature: 0.5–0.8` — creative tasks (brainstorming, drafting).
+  - `top_p: 0.9–0.95` and `top_k: 0–50` as complementary controls.
+- Be aware of repetition loops at extreme settings — reduce temperature or use presence/penalty tokens to discourage loops.
+
+### Core prompting techniques
+
+- **Zero-shot**: supply a clear task description and input. Useful for quick one-off tasks.
+- **One-shot / Few-shot**: include 1–5 high-quality examples demonstrating the desired input → output mapping.
+- **System prompts**: provide persistent context (e.g., "You are a helpful code reviewer...") to set role, tone, and constraints.
+- **Role prompting**: attach personas (e.g., "You are a senior ML engineer") to shape style and depth.
+- **Contextual prompting**: include relevant documents, code snippets, or error traces to ground the response.
+- **Stepback prompting**: start with a broad question to surface assumptions, then narrow for concrete steps.
+
+Example — JSON schema enforcement (useful when downstream code must parse the response):
+
+```text
+System: You are a JSON-only assistant. Always respond with valid JSON matching the schema.
+User: Convert the text below into the schema {"name": string, "tags": [string], "priority": number}.
+Text: "Fix the login bug, tag: bug, auth; priority high"
+```
+
+### Advanced reasoning techniques
+
+- **Chain-of-Thought (CoT)**: ask the model to show reasoning steps — useful for complex decisioning and debugging, though costs increase with longer outputs.
+- **Self-Consistency**: sample multiple CoT outputs and take a consensus to improve reliability.
+- **Tree of Thoughts (ToT)**: explore branching reasoning paths and prune based on heuristics — suitable for search/optimization.
+- **ReAct (Reason + Act)**: combine reasoning with tool calls (search, calculators, APIs) to produce grounded, up-to-date answers.
+- **Automatic Prompt Engineering (APE)**: programmatic generation & evaluation of many prompt variants to discover robust prompts automatically.
+
+Quick CoT template:
+
+"Begin by outlining the high-level approach in 2–4 bullets. Then write step-by-step reasoning. Finally, produce the final answer clearly labeled."
+
+Mermaid flow (CoT → answer):
+
+```mermaid
+flowchart TD
+  U[User Query] --> M[Model (CoT)]
+  M -->|steps| A[Candidate Answers]
+  A --> V[Validation / Self-Consistency]
+  V --> Final[Final Answer]
+```
+
+### Practical, code-focused examples
+
+OpenAI / HTTP style (pseudocode):
+
+```python
+# Minimal example structure (pseudocode)
+prompt = "You are a helpful assistant. Return only valid JSON: {name, tags, priority}.\nText: '...'"
+resp = client.generate(prompt, max_tokens=200, temperature=0.0)
+data = json.loads(resp.text)
+```
+
+Few-shot for code translation: include 2–3 concise input/output pairs covering edge cases.
+
+Debugging pattern:
+
+1. Provide the full traceback or failing snippet.
+2. Ask for root cause, concise fix, and a one-line test to validate.
+
+### Best practices and checklist
+
+- Keep prompts simple and specific. Prefer positive instructions (what to do) over negatives (what not to do).
+- Use schemas (JSON, YAML) when you need machine-parseable responses.
+- Iterate: save prompt versions, test with representative inputs, and measure outputs.
+- Instrument prompts for evaluation: include unit tests, validation checks and fuzz inputs.
+- Share and document prompts (a small prompt library) so teams can reuse effective patterns.
+
+Checklist before production:
+
+- Does the prompt produce valid, parseable outputs for diverse inputs?
+- Are sampling settings appropriate (deterministic for validation, creative for ideation)?
+- Are safety/guardrails in place (content filters, rate limits, verification)?
+
+### Exercises (practical)
+
+1. Zero-shot vs Few-shot: create a task and compare zero-shot against a 3-example few-shot prompt; measure accuracy.
+2. CoT debugging: give a short erroneous function and ask the model to list steps and produce a fix.
+3. Schema enforcement: create a system prompt that always returns valid JSON for a given schema and test with varied inputs.
+
+### References
+
+- See `quick-knowledge/2. Prompt-engineering/` for deeper notes and exercises.
+
 ## 6. Common models & toolkits
 
 - GPT-family: decoder-only causal LMs (GPT-2, GPT-3, GPT-4 — closed or partially closed variants)

@@ -17,4 +17,3 @@ nav:
       - Overview: "agents/index.md"
       - Getting Started: "agents/getting-started.md"
       - Foundational LLMs & Text Generation: "agents/foundational-llms.md"
-      - Prompt Engineering: "agents/prompt-engineering.md"
