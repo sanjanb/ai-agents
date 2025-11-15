@@ -87,6 +87,20 @@ Notes:
 - For causal language modeling (auto-regressive generation) we use a decoder-only transformer (masked self-attention to prevent seeing future tokens).
 - For bidirectional tasks (masked LM), encoder or encoder-decoder variants are used.
 
+## Model evolution — concise timeline
+
+A short, practical timeline to ground historical context and terminology you'll see in research and tooling:
+
+- 2017 — "Attention Is All You Need" (Vaswani et al.) introduces Transformers.
+- 2018 — GPT-1 demonstrates transfer via large-scale unsupervised pretraining.
+- 2018 — BERT introduces masked LM and strong feature representations for understanding tasks.
+- 2019–2020 — GPT-2 / GPT-3 scale autoregressive generation and few-shot learning emerges.
+- 2021–2022 — Instruction tuning and RLHF become common for helpfulness (InstructGPT lineage).
+- 2022–2024 — PaLM, Chinchilla, LLaMA, and other research models emphasize scaling laws and data quality.
+- 2023+ — Multimodal and MoE experiments (e.g., Gemini-class models) push long-context and routing techniques.
+
+Use this timeline as a quick glossary when reading papers or model release notes.
+
 ## 4. Training objectives
 
 ### Causal LM (auto-regressive)
@@ -164,7 +178,30 @@ Notes on evolution and architecture choices
 - LLaMA, OPT, BLOOM: open-source large models with various licenses
 - PaLM, Chinchilla: research-scale models with variants
 - Toolkits: Hugging Face Transformers, Hugging Face Accelerate, transformers + PEFT (parameter-efficient fine-tuning), OpenAI SDKs, LangChain for orchestration
+Expanded notes and practical implications
 
+Mixture-of-Experts (MoE)
+
+- MoE architectures route tokens to a small subset of expert subnetworks via a learned gating mechanism. Only a few experts are active per token, which lets models present extremely large parameter counts while keeping per-token compute lower.
+- Practical trade-offs: MoE can reduce inference FLOPs for certain workloads but adds complexity (routing, expert balancing, larger memory footprint for storage, and potential latency variance). It's well-suited where a model can benefit from specialized sub-networks (e.g., different languages, domains).
+
+Long-context and retrieval
+
+- Long-context models (32k, 100k+ tokens) enable multi-document reasoning, chaining, and document-level summarization. When you need factual grounding, combine long-context models with retrieval-augmented generation (RAG): fetch relevant documents, prepend or condition the model, then generate.
+
+Inference optimizations (expanded)
+
+- FlashAttention: an attention implementation that reduces memory I/O and increases throughput, often used during both training and inference to accelerate transformer attention blocks.
+- KV (key-value) caching / prefix caching: in chat-style interactions, cache the model's past key/value tensors so repeated context does not need full re-computation — critical for low-latency conversational apps.
+- Speculative decoding: run a small fast model to predict several tokens, then verify or score them with a larger model to reduce latency while keeping quality.
+- Quantization and pruning: reduce numeric precision (e.g., FP16, int8, 4-bit quantization) to shrink memory footprint and increase speed. QLoRA combines quantization with LoRA-style low-rank updates to enable fine-tuning on constrained hardware.
+- Distillation: train a smaller student model to mimic a larger teacher's behavior to serve latency-sensitive endpoints.
+
+Tooling and practical guidance
+
+- Use HV-friendly kernels (FlashAttention-enabled builds) when deploying transformer-based models at scale.
+- For chat apps, always enable KV caches and consider prefix caching to avoid re-encoding long histories.
+- When latency is critical, consider distillation or speculative decoding strategies.
 ## 7. Practical examples (runnable)
 
 Below are two minimal examples: (A) using Hugging Face local model (small) and (B) calling an LLM API. These are intentionally small so they run quickly.
@@ -224,11 +261,31 @@ Additional fine-tuning and alignment variants
 - DPO (Direct Preference Optimization): alternative to RLHF that directly optimizes for pairwise preferences without an explicit RL loop; can simplify training pipelines.
 - PEFT techniques (LoRA, adapters, prefix tuning) are especially useful when you have many tasks and limited compute — they let you store small weight deltas per task instead of separate full model checkpoints.
 
+Guidance: LoRA vs QLoRA vs full fine-tuning
+
+- LoRA: add low-rank adapters to attention or feed-forward weights; excellent when you have a modest hardware setup and want to keep the base model frozen. Stores small deltas per task and is quick to experiment with.
+- QLoRA: quantize the base model (e.g., 4-bit) during fine-tuning so it fits on less memory; combine with LoRA adapters to fine-tune very large models on a single GPU or smaller hardware. Use when you need to fine-tune a large checkpoint but don't have multi-GPU resources.
+- Full fine-tuning: choose only when you have the hardware and a single target task where performance gain justifies the cost. Remember: storing full checkpoints for many tasks is expensive.
+
+Practical tip: start with LoRA (or QLoRA if memory-bound) and a small validation set. If results plateau and you have resources, consider broader fine-tuning or data-centric improvements.
+
 ## 9. Evaluation
 
 - Automatic metrics: perplexity (language modeling), BLEU/ROUGE (overlap), BERTScore (semantic similarity).
 - Human evaluation: pairwise preference, Likert-scale ratings, task-specific success metrics.
 - Robustness tests: adversarial prompts, stress tests across edge cases.
+
+LLM-as-evaluator and rubrics
+
+- LLM-as-evaluator: Use a separate, calibrated model to score or critique outputs (e.g., score factuality, relevance, or adherence to a rubric). This can scale evaluations but must be benchmarked against human judgments to avoid cascading biases.
+- Rubrics: define explicit criteria (e.g., factual accuracy, completeness, brevity, tone) and write clear scoring rules. For pairwise preference tasks, specify tie-breakers and borderline cases.
+
+Practical evaluation workflow
+
+1. Define a small, representative test suite with edge cases.
+2. Use automated checks for parseability, schema conformance, and basic validation.
+3. Run an LLM-based evaluation pass and sample items for human auditing.
+4. Iterate on prompts and dataset examples based on evaluation failure modes.
 
 ## 10. Safety, biases & limitations
 
