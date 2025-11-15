@@ -319,3 +319,21 @@ Measure both quality and operations:
 - Agents deck and companion notes from the provided PDFs
 - LangGraph & LangChain docs; Google Gemini API docs
 - Prior chapters: Foundational LLMs, Embeddings & Vector Stores (for RAG and evaluation)
+
+---
+
+## Code Examples in This Repo
+
+- `examples/agents/gemini_function_calling.py`: Gemini function calling over SQLite (safe, typed tool calls)
+- `examples/agents/langgraph_react_agent.py`: LangGraph ReAct agent with offline fallback
+- `examples/agents/rag_memory_agent.py`: Minimal FAISS-based RAG memory agent
+- `scripts/eval_rag.py`: Precision@k and MRR evaluation harness
+
+Quick start (Windows PowerShell):
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r examples\agents\requirements.txt
+python examples\agents\rag_memory_agent.py
+```
