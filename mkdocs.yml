@@ -19,3 +19,4 @@ nav:
       - Foundational LLMs & Text Generation: "agents/foundational-llms.md"
       - Embeddings & Vector Stores: "agents/embeddings-vector-stores.md"
       - Generative Agents: "agents/generative-agents.md"
+      - Domain-Specific LLMs: "agents/domain-specific-llms.md"
