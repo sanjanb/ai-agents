@@ -22,28 +22,33 @@ This project provides a complete learning pathway from foundational LLM concepts
 ### Core Chapters
 
 1. **[Foundational LLMs & Text Generation](docs/agents/foundational-llms.md)**
+
    - LLM architecture and capabilities
    - Text generation techniques and best practices
    - Model selection and evaluation
 
 2. **[Embeddings & Vector Stores](docs/agents/embeddings-vector-stores.md)**
+
    - Vector representations and similarity search
    - Database integration and indexing strategies
    - Semantic search implementation
 
 3. **[Generative Agents](docs/agents/generative-agents.md)**
+
    - Agent architectures and reasoning frameworks
    - Tool integration and function calling
    - Memory systems and planning strategies
    - **🎯 Practical Examples**: Function calling, LangGraph agents, RAG memory
 
 4. **[Domain-Specific LLMs](docs/agents/domain-specific-llms.md)**
+
    - Adaptation strategies and use cases
    - Data curation and quality management
    - Grounding techniques and external knowledge integration
    - **🎯 Practical Examples**: Fine-tuning workflows, search grounding
 
 5. **[Fine-Tuning LLMs](docs/agents/fine-tuning-llms.md)**
+
    - Quantization techniques (4-bit, 8-bit, 1-bit)
    - Parameter-efficient fine-tuning (LoRA, QLoRA)
    - Advanced optimization and deployment
@@ -74,7 +79,7 @@ python -m venv .venv
 # On Windows
 .\.venv\Scripts\activate
 
-# On macOS/Linux  
+# On macOS/Linux
 source .venv/bin/activate
 
 # Install documentation dependencies
@@ -173,24 +178,28 @@ ai-agents/
 ## 🔬 Features & Capabilities
 
 ### 🧠 Agent Intelligence
+
 - **Multi-Modal Reasoning**: Text, search, and tool integration
 - **Memory Systems**: Short-term and long-term memory management
 - **Planning & Reflection**: Strategic decision-making capabilities
 - **Tool Integration**: External API and database connectivity
 
 ### ⚡ Performance Optimization
+
 - **Quantization**: 4-bit, 8-bit, and 1-bit model compression
 - **Parameter-Efficient Training**: LoRA, QLoRA, and adapter techniques
 - **Memory Management**: Gradient checkpointing and CPU offloading
 - **Distributed Training**: Multi-GPU and cloud deployment strategies
 
 ### 📊 Evaluation & Monitoring
+
 - **Precision@k and MRR**: Information retrieval metrics
 - **OpenTelemetry Integration**: Performance tracing and monitoring
 - **A/B Testing Framework**: Model comparison and validation
 - **Cost Analysis**: Training and inference expense tracking
 
 ### 🌐 Production Deployment
+
 - **FastAPI Integration**: REST API endpoints for agents
 - **Container Support**: Docker deployment configurations
 - **Cloud Integration**: Azure, AWS, and GCP compatibility
@@ -199,18 +208,21 @@ ai-agents/
 ## 🎯 Use Cases & Applications
 
 ### 📈 Business Intelligence
+
 - **Document Analysis**: Contract review and compliance checking
 - **Customer Support**: Intelligent chatbots and ticket routing
 - **Market Research**: Trend analysis and competitive intelligence
 - **Financial Analytics**: Risk assessment and portfolio management
 
 ### 🔬 Research & Development
+
 - **Literature Review**: Paper summarization and knowledge extraction
 - **Hypothesis Generation**: Research question formulation
 - **Data Analysis**: Statistical interpretation and visualization
 - **Experiment Design**: Methodology development and validation
 
 ### 🎓 Education & Training
+
 - **Personalized Tutoring**: Adaptive learning systems
 - **Content Generation**: Course material and assessment creation
 - **Knowledge Assessment**: Automated grading and feedback
@@ -220,12 +232,12 @@ ai-agents/
 
 ### Memory Efficiency Comparison
 
-| Method | Memory Usage | Training Speed | Accuracy Drop | Use Case |
-|--------|--------------|----------------|---------------|-----------|
-| Full Fine-tuning | 84GB | 100% | 0% | Maximum accuracy |
-| LoRA | 14GB | 160% | <2% | Balanced efficiency |
-| QLoRA | 3.6GB | 155% | <3% | Consumer hardware |
-| 1-bit LLMs | 2.1GB | 250% | <5% | Edge deployment |
+| Method           | Memory Usage | Training Speed | Accuracy Drop | Use Case            |
+| ---------------- | ------------ | -------------- | ------------- | ------------------- |
+| Full Fine-tuning | 84GB         | 100%           | 0%            | Maximum accuracy    |
+| LoRA             | 14GB         | 160%           | <2%           | Balanced efficiency |
+| QLoRA            | 3.6GB        | 155%           | <3%           | Consumer hardware   |
+| 1-bit LLMs       | 2.1GB        | 250%           | <5%           | Edge deployment     |
 
 ### Agent Performance Metrics
 
@@ -262,6 +274,7 @@ mkdocs build
 5. **Open Pull Request**: Submit your contribution for review
 
 ### Code Standards
+
 - **Python Style**: Follow PEP 8 guidelines
 - **Documentation**: Include docstrings for all functions
 - **Testing**: Add tests for new functionality
@@ -270,18 +283,21 @@ mkdocs build
 ## 🔗 Resources & References
 
 ### 📚 Essential Papers
+
 - [Attention Is All You Need](https://arxiv.org/abs/1706.03762) - Transformer architecture
 - [LoRA: Low-Rank Adaptation](https://arxiv.org/abs/2106.09685) - Parameter-efficient fine-tuning
 - [QLoRA: Efficient Finetuning](https://arxiv.org/abs/2305.14314) - Quantized fine-tuning
 - [BitNet: Scaling 1-bit Transformers](https://arxiv.org/abs/2310.11453) - Ultra-efficient models
 
 ### 🌐 External Tools & Libraries
+
 - **[Hugging Face Transformers](https://huggingface.co/transformers/)**: Model library and APIs
 - **[LangChain](https://langchain.readthedocs.io/)**: Agent framework and tools
 - **[FAISS](https://github.com/facebookresearch/faiss)**: Vector similarity search
 - **[OpenTelemetry](https://opentelemetry.io/)**: Observability and tracing
 
 ### 🎓 Learning Paths
+
 - **Beginner**: Start with Foundational LLMs → Embeddings → Getting Started examples
 - **Intermediate**: Generative Agents → Domain-Specific adaptation → Fine-tuning basics
 - **Advanced**: 1-bit models → Production deployment → Custom agent architectures
