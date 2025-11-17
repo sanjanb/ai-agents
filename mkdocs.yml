@@ -20,3 +20,4 @@ nav:
       - Embeddings & Vector Stores: "agents/embeddings-vector-stores.md"
       - Generative Agents: "agents/generative-agents.md"
       - Domain-Specific LLMs: "agents/domain-specific-llms.md"
+      - Fine-Tuning LLMs: "agents/fine-tuning-llms.md"

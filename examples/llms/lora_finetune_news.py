@@ -28,14 +28,17 @@ def collate(batch, tokenizer):
 
 
 def load_subset(sample_size: int):
-    ds = load_dataset("newsgroup", split="train")  # lightweight community dataset
-    if sample_size and sample_size < len(ds):
-        ds = ds.shuffle(seed=42).select(range(sample_size))
-    # map to expected fields
-    ds = ds.rename_columns({"article": "text"})
-    ds = ds.class_encode_column("topic")
-    ds = ds.rename_column("topic", "label")
-    return ds
+    from sklearn.datasets import fetch_20newsgroups
+    from datasets import Dataset
+    
+    # Use sklearn's 20newsgroups dataset instead
+    newsgroups = fetch_20newsgroups(subset='train', remove=('headers', 'footers', 'quotes'))
+    data = [{'text': text, 'label': label} for text, label in zip(newsgroups.data, newsgroups.target)]
+    
+    if sample_size and sample_size < len(data):
+        data = data[:sample_size]
+    
+    return Dataset.from_list(data)
 
 
 def train(args):
