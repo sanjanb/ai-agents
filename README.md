@@ -45,14 +45,14 @@ This project provides a complete learning pathway from foundational LLM concepts
    - Adaptation strategies and use cases
    - Data curation and quality management
    - Grounding techniques and external knowledge integration
-   - ** Practical Examples**: Fine-tuning workflows, search grounding
+   - **Practical Examples**: Fine-tuning workflows, search grounding
 
 5. **[Fine-Tuning LLMs](docs/agents/fine-tuning-llms.md)**
 
    - Quantization techniques (4-bit, 8-bit, 1-bit)
    - Parameter-efficient fine-tuning (LoRA, QLoRA)
    - Advanced optimization and deployment
-   - ** Practical Examples**: LoRA implementation, evaluation harness
+   - **Practical Examples**: LoRA implementation, evaluation harness
 
 6. **[Getting Started](docs/agents/getting-started.md)**
    - Environment setup and dependencies
@@ -325,4 +325,4 @@ Special thanks to the open-source community and researchers whose work makes thi
 
 ---
 
-** Ready to build intelligent agents? Start with our [Getting Started Guide](docs/agents/getting-started.md) and explore the examples!**
+**Ready to build intelligent agents? Start with our [Getting Started Guide](docs/agents/getting-started.md) and explore the examples!**
