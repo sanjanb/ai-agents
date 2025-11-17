@@ -10,7 +10,7 @@ Imagine assembling an LLM-based system from scratch: What integrations might you
 
 Reflect on why traditional coding approaches might overwhelm teams: If fine-tuning requires handling quantized models or low-rank adaptations, what additional layers of complexity arise in productionizing them? Probe deeper—how do resource constraints, like API limits or database connections, mirror real-world scenarios, and what questions would you pose to evaluate if a unified platform could streamline this without sacrificing control?
 
-### Section 3: Introducing a No-Code Solution – The Platform's Promise and Architecture
+### [Section 3](https://www.vextapp.com/): Introducing a No-Code Solution – The Platform's Promise and Architecture
 Let's turn to a tool that claims to simplify these ops: Suppose a platform allows drag-and-drop creation of LLM pipelines. What core components might it include, such as query inputs, data sources, embeddings, and output generation? How could automating vectorization and storage free you to focus on higher-level design?
 
 Ponder its architecture: If it supports hosted models like GPT variants or Gemini, alongside data uploads from PDFs or drives, why might this enable rapid prototyping? Reflect on how this ties back to fine-tuning—if you're ingesting documents on PEFT methods, how could the platform use them for context-aware responses? What trade-offs in flexibility versus simplicity do you anticipate, and in what contexts might this approach empower beginners or accelerate experts?
