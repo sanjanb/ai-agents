@@ -1,4 +1,4 @@
-# 🤖 AI Agents — Learn & Build
+# AI Agents — Learn & Build
 
 [![Website](https://img.shields.io/badge/Website-Live-brightgreen)](http://localhost:8000)
 [![Documentation](https://img.shields.io/badge/Docs-MkDocs-blue)](http://localhost:8000)
@@ -7,17 +7,17 @@
 
 > **Comprehensive educational resource for designing, building, and deploying AI agents using Large Language Models (LLMs), retrieval-augmented generation (RAG), and cutting-edge fine-tuning techniques.**
 
-## 🌟 Overview
+## Overview
 
 This project provides a complete learning pathway from foundational LLM concepts to advanced agent implementations, featuring:
 
-- **📚 6 Comprehensive Chapters** covering theory and practice
-- **🛠️ Hands-On Examples** with runnable code and implementations
-- **🔧 Production-Ready Tools** including evaluation harnesses and tracing utilities
-- **⚡ Efficient Training** techniques like LoRA, QLoRA, and 1-bit LLMs
-- **🚀 Deployment Strategies** from local development to cloud production
+- **6 Comprehensive Chapters** covering theory and practice
+- **Hands-On Examples** with runnable code and implementations
+- **Production-Ready Tools** including evaluation harnesses and tracing utilities
+- **Efficient Training** techniques like LoRA, QLoRA, and 1-bit LLMs
+- **Deployment Strategies** from local development to cloud production
 
-## 📖 Table of Contents
+## Table of Contents
 
 ### Core Chapters
 
@@ -38,27 +38,27 @@ This project provides a complete learning pathway from foundational LLM concepts
    - Agent architectures and reasoning frameworks
    - Tool integration and function calling
    - Memory systems and planning strategies
-   - **🎯 Practical Examples**: Function calling, LangGraph agents, RAG memory
+   - **Practical Examples**: Function calling, LangGraph agents, RAG memory
 
 4. **[Domain-Specific LLMs](docs/agents/domain-specific-llms.md)**
 
    - Adaptation strategies and use cases
    - Data curation and quality management
    - Grounding techniques and external knowledge integration
-   - **🎯 Practical Examples**: Fine-tuning workflows, search grounding
+   - ** Practical Examples**: Fine-tuning workflows, search grounding
 
 5. **[Fine-Tuning LLMs](docs/agents/fine-tuning-llms.md)**
 
    - Quantization techniques (4-bit, 8-bit, 1-bit)
    - Parameter-efficient fine-tuning (LoRA, QLoRA)
    - Advanced optimization and deployment
-   - **🎯 Practical Examples**: LoRA implementation, evaluation harness
+   - ** Practical Examples**: LoRA implementation, evaluation harness
 
 6. **[Getting Started](docs/agents/getting-started.md)**
    - Environment setup and dependencies
    - Quick start guides and tutorials
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -102,7 +102,7 @@ mkdocs serve
 
 ### Try the Examples
 
-#### 🤖 Agent Examples
+#### Agent Examples
 
 ```bash
 # Navigate to examples directory
@@ -122,7 +122,7 @@ cd ../../scripts
 python eval_rag.py
 ```
 
-#### 🔧 Fine-Tuning Examples
+#### Fine-Tuning Examples
 
 ```bash
 # Navigate to LLM examples
@@ -138,7 +138,7 @@ python eval_domain_classification.py --sample_size 500
 python search_grounding_stub.py
 ```
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 ai-agents/
@@ -175,60 +175,60 @@ ai-agents/
 └── 📄 README.md                       # This file
 ```
 
-## 🔬 Features & Capabilities
+## Features & Capabilities
 
-### 🧠 Agent Intelligence
+### Agent Intelligence
 
 - **Multi-Modal Reasoning**: Text, search, and tool integration
 - **Memory Systems**: Short-term and long-term memory management
 - **Planning & Reflection**: Strategic decision-making capabilities
 - **Tool Integration**: External API and database connectivity
 
-### ⚡ Performance Optimization
+### Performance Optimization
 
 - **Quantization**: 4-bit, 8-bit, and 1-bit model compression
 - **Parameter-Efficient Training**: LoRA, QLoRA, and adapter techniques
 - **Memory Management**: Gradient checkpointing and CPU offloading
 - **Distributed Training**: Multi-GPU and cloud deployment strategies
 
-### 📊 Evaluation & Monitoring
+### Evaluation & Monitoring
 
 - **Precision@k and MRR**: Information retrieval metrics
 - **OpenTelemetry Integration**: Performance tracing and monitoring
 - **A/B Testing Framework**: Model comparison and validation
 - **Cost Analysis**: Training and inference expense tracking
 
-### 🌐 Production Deployment
+### Production Deployment
 
 - **FastAPI Integration**: REST API endpoints for agents
 - **Container Support**: Docker deployment configurations
 - **Cloud Integration**: Azure, AWS, and GCP compatibility
 - **Scaling Strategies**: Load balancing and auto-scaling
 
-## 🎯 Use Cases & Applications
+## Use Cases & Applications
 
-### 📈 Business Intelligence
+### Business Intelligence
 
 - **Document Analysis**: Contract review and compliance checking
 - **Customer Support**: Intelligent chatbots and ticket routing
 - **Market Research**: Trend analysis and competitive intelligence
 - **Financial Analytics**: Risk assessment and portfolio management
 
-### 🔬 Research & Development
+### Research & Development
 
 - **Literature Review**: Paper summarization and knowledge extraction
 - **Hypothesis Generation**: Research question formulation
 - **Data Analysis**: Statistical interpretation and visualization
 - **Experiment Design**: Methodology development and validation
 
-### 🎓 Education & Training
+### Education & Training
 
 - **Personalized Tutoring**: Adaptive learning systems
 - **Content Generation**: Course material and assessment creation
 - **Knowledge Assessment**: Automated grading and feedback
 - **Skill Development**: Professional training and certification
 
-## 📊 Performance Benchmarks
+## Performance Benchmarks
 
 ### Memory Efficiency Comparison
 
@@ -246,7 +246,7 @@ ai-agents/
 - **Function Calling Success**: >95% accuracy on structured tasks
 - **Memory Efficiency**: 16x reduction with minimal quality loss
 
-## 🛠️ Development & Contribution
+## Development & Contribution
 
 ### Development Setup
 
@@ -280,33 +280,33 @@ mkdocs build
 - **Testing**: Add tests for new functionality
 - **Examples**: Provide working code demonstrations
 
-## 🔗 Resources & References
+## Resources & References
 
-### 📚 Essential Papers
+### Essential Papers
 
 - [Attention Is All You Need](https://arxiv.org/abs/1706.03762) - Transformer architecture
 - [LoRA: Low-Rank Adaptation](https://arxiv.org/abs/2106.09685) - Parameter-efficient fine-tuning
 - [QLoRA: Efficient Finetuning](https://arxiv.org/abs/2305.14314) - Quantized fine-tuning
 - [BitNet: Scaling 1-bit Transformers](https://arxiv.org/abs/2310.11453) - Ultra-efficient models
 
-### 🌐 External Tools & Libraries
+### External Tools & Libraries
 
 - **[Hugging Face Transformers](https://huggingface.co/transformers/)**: Model library and APIs
 - **[LangChain](https://langchain.readthedocs.io/)**: Agent framework and tools
 - **[FAISS](https://github.com/facebookresearch/faiss)**: Vector similarity search
 - **[OpenTelemetry](https://opentelemetry.io/)**: Observability and tracing
 
-### 🎓 Learning Paths
+### Learning Paths
 
 - **Beginner**: Start with Foundational LLMs → Embeddings → Getting Started examples
 - **Intermediate**: Generative Agents → Domain-Specific adaptation → Fine-tuning basics
 - **Advanced**: 1-bit models → Production deployment → Custom agent architectures
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Special thanks to the open-source community and researchers whose work makes this educational resource possible:
 
@@ -316,7 +316,7 @@ Special thanks to the open-source community and researchers whose work makes thi
 - **Microsoft** for QLoRA and quantization research
 - **OpenAI** for advancing LLM capabilities and best practices
 
-## 📧 Support & Contact
+## Support & Contact
 
 - **Issues**: [GitHub Issues](https://github.com/sanjanb/ai-agents/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/sanjanb/ai-agents/discussions)
@@ -325,4 +325,4 @@ Special thanks to the open-source community and researchers whose work makes thi
 
 ---
 
-**🚀 Ready to build intelligent agents? Start with our [Getting Started Guide](docs/agents/getting-started.md) and explore the examples!**
+** Ready to build intelligent agents? Start with our [Getting Started Guide](docs/agents/getting-started.md) and explore the examples!**
