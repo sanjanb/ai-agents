@@ -5,7 +5,6 @@ repo_name: "ai-agents"
 docs_dir: "docs/"
 site_dir: "_site_mkdocs/"
 theme: "readthedocs"
-prev_next_buttons_location: "both"
 copyright: "Carlos Pereira Atencio"
 
 nav:
@@ -13,6 +12,7 @@ nav:
   - Docs:
       - Quickstart: "quickstart.md"
       - Jekyll: "jekyll.md"
+      - FAQs: "faqs.md"
   - AI Agents:
       - Overview: "agents/index.md"
       - Getting Started: "agents/getting-started.md"
@@ -21,3 +21,10 @@ nav:
       - Generative Agents: "agents/generative-agents.md"
       - Domain-Specific LLMs: "agents/domain-specific-llms.md"
       - Fine-Tuning LLMs: "agents/fine-tuning-llms.md"
+  - Configuration:
+      - Config YAML: "configuration/configyml.md"
+      - Front Matter: "configuration/frontmatter.md"
+  - Demo Pages:
+      - Overview: "demo-pages/index.md"
+      - Test Page: "demo-pages/test-page.md"
+      - Deeper Section: "demo-pages/deepersection/test-page.md"
